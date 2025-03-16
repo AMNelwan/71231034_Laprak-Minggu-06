@@ -1,0 +1,43 @@
+def perkalian(a, b):
+    hasil = 0
+    for _ in range(a):  # Ulang sebanyak 'a' kali
+        hasil += b  # Tambahkan 'b' ke hasil
+    return hasil
+
+def ganjil(bawah, atas):
+    if bawah < atas:
+        return [i for i in range(bawah, atas + 1) if i % 2 != 0]  # Naik
+    else:
+        return [i for i in range(bawah, atas - 1, -1) if i % 2 != 0]  # Turun
+
+def hitung_ips():
+    bobot_nilai = {'A': 4, 'B': 3, 'C': 2, 'D': 1}
+    jumlah_mk = int(input("Masukkan jumlah mata kuliah: "))
+    total_bobot = 0
+    total_sks = jumlah_mk * 3  # SKS per mata kuliah selalu 3
+    
+    for i in range(jumlah_mk):
+        nilai = input(f"Masukkan nilai untuk mata kuliah {i+1} (A/B/C/D): ").upper()
+        if nilai in bobot_nilai:
+            total_bobot += bobot_nilai[nilai] * 3  # SKS = 3
+        else:
+            print("Nilai tidak valid, masukkan A, B, C, atau D.")
+            return
+    
+    ips = total_bobot / total_sks
+    print(f"IPS yang diperoleh: {ips:.2f}")
+
+# Contoh penggunaan
+x, y = 6, 5
+print(f"{x} x {y} = {' + '.join([str(y)] * x)} = {perkalian(x, y)}")
+
+x, y = 7, 10
+print(f"{x} x {y} = {' + '.join([str(y)] * x)} = {perkalian(x, y)}")
+
+bawah, atas = 10, 30
+print(f"Deret bilangan ganjil dari {bawah} ke {atas}: {', '.join(map(str, ganjil(bawah, atas)))}")
+
+bawah, atas = 97, 82
+print(f"Deret bilangan ganjil dari {bawah} ke {atas}: {', '.join(map(str, ganjil(bawah, atas)))}")
+
+hitung_ips()
